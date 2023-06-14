@@ -1,0 +1,22 @@
+plugins {
+    id("java")
+}
+
+group = "org.example"
+version = "1.0-SNAPSHOT"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation(
+            'io.github.bonigarcia:webdrivermanager:3.8.1',
+            'org.seleniumhq.selenium:selenium-java:3.141.59',
+            'org.slf4j:slf4j-simple:2.0.7'
+    )
+}
+
+tasks.test {
+    useJUnitPlatform()
+}
