@@ -26,7 +26,10 @@ public class SeleniumRunner {
                 .map(element -> element.getText().toLowerCase())
                 .collect(Collectors.toList());
 
-        // Assert.assertTrue(actualItems.stream().allMatch(item -> item.contains("invalid search phrase")));
+//        System.out.println(actualItems);
+//        actualItems.forEach(System.out::println);
+//
+//        Assert.assertTrue(actualItems.stream().anyMatch(item -> item.contains("a browser automation framework and ecosystem.")));
 
         List<String> expectedItems = actualItems.stream()
                         .filter(item -> item.contains(searchPhrase))
