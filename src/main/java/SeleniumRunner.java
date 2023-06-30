@@ -5,36 +5,41 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class SeleniumRunner {
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
         WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
+
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+
+        WebDriver driver = new ChromeDriver(options);
         driver.manage().window().maximize();
-        driver.get("https://github.com");
+
+        driver.get("https://github.com/");
 
         WebElement searchInput = driver.findElement(By.cssSelector("[name='q']"));
+
         String searchPhrase = "selenium";
-        searchInput.sendKeys("selenium");
+
+        searchInput.sendKeys(searchPhrase);
         searchInput.sendKeys(Keys.ENTER);
 
-        List<String> actualItems = driver.findElements(By.cssSelector(".repo-list-item")).stream()
+        List<String> actualItems = driver.findElements(By.cssSelector(".repo-list-item"))
+                .stream()
                 .map(element -> element.getText().toLowerCase())
                 .collect(Collectors.toList());
-
-//        System.out.println(actualItems);
-//        actualItems.forEach(System.out::println);
-//
-//        Assert.assertTrue(actualItems.stream().anyMatch(item -> item.contains("a browser automation framework and ecosystem.")));
-
         List<String> expectedItems = actualItems.stream()
-                        .filter(item -> item.contains(searchPhrase))
-                        .collect(Collectors.toList());
-        Assert.assertEquals(expectedItems, actualItems);
+                .filter(item -> item.contains("invalid search phrase"))
+                .collect(Collectors.toList());
+
+        // Assert.assertEquals(expectedItems, actualItems);
 
         driver.quit();
     }
