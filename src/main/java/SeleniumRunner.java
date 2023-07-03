@@ -36,10 +36,14 @@ public class SeleniumRunner {
                 .map(element -> element.getText().toLowerCase())
                 .collect(Collectors.toList());
         List<String> expectedItems = actualItems.stream()
-                .filter(item -> item.contains("invalid search phrase"))
+                .filter(item -> item.contains(searchPhrase))
                 .collect(Collectors.toList());
 
-        // Assert.assertEquals(expectedItems, actualItems);
+        System.out.println(actualItems);
+        System.out.println("=============================>");
+        System.out.println(expectedItems);
+
+        Assert.assertEquals(expectedItems, actualItems);
 
         driver.quit();
     }
