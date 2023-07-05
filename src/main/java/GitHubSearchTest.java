@@ -9,6 +9,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,6 +19,7 @@ import java.util.stream.Collectors;
 
 public class GitHubSearchTest {
     private static WebDriver driver;
+    private static WebDriverWait wait;
 
     @BeforeAll
     public static void setUpDriver(){
@@ -28,7 +31,16 @@ public class GitHubSearchTest {
 
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+    }
+
+    @BeforeAll
+    public static void setUpWait(){
+        wait = new WebDriverWait(driver, 15);
+    }
+
+    private static void switchOffImplicitWait(){
+        driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
     }
 
     @Test
@@ -57,6 +69,8 @@ public class GitHubSearchTest {
 //        System.out.println(expectedItems);
 
         System.out.println(LocalDateTime.now());
+        switchOffImplicitWait();
+        wait.until(ExpectedConditions.visibilityOfElementLocated((By.cssSelector("[title='invalid title']"))));
         Assertions.assertTrue(driver.findElement(By.cssSelector("[title='invalid title']")).isDisplayed());
 
         Assertions.assertEquals(expectedItems, actualItems);
