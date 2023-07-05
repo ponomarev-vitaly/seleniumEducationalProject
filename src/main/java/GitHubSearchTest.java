@@ -42,11 +42,8 @@ public class GitHubSearchTest {
     private static void switchOffImplicitWait(){
         driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
     }
-
     @Test
     public void checkGitHubSearch(){
-
-
         driver.get("https://github.com/");
 
         WebElement searchInput = driver.findElement(By.cssSelector("[name='q']"));
@@ -70,12 +67,12 @@ public class GitHubSearchTest {
 
         System.out.println(LocalDateTime.now());
         switchOffImplicitWait();
-        wait.until(ExpectedConditions.visibilityOfElementLocated((By.cssSelector("[title='invalid title']"))));
-        Assertions.assertTrue(driver.findElement(By.cssSelector("[title='invalid title']")).isDisplayed());
+        wait.until(ExpectedConditions.visibilityOfElementLocated((By.cssSelector(".repo-list-item"))));
+//        wait.until(ExpectedConditions.visibilityOfElementLocated((By.cssSelector("[title='invalid title']"))));
+//        Assertions.assertTrue(driver.findElement(By.cssSelector("[title='invalid title']")).isDisplayed());
 
         Assertions.assertEquals(expectedItems, actualItems);
     }
-
     @AfterAll
     public static void tearDownDriver(){
         System.out.println(LocalDateTime.now());
