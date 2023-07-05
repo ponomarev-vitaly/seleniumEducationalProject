@@ -1,5 +1,7 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -12,16 +14,23 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class GitHubSearchTest {
-    @Test
-    public void checkGitHubSearch(){
+    private static WebDriver driver;
+
+    @BeforeAll
+    public static void setUpDriver(){
         WebDriverManager.chromedriver().setup();
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
 
-        WebDriver driver = new ChromeDriver(options);
+        driver = new ChromeDriver(options);
         driver.manage().window().maximize();
+    }
+
+    @Test
+    public void checkGitHubSearch(){
+
 
         driver.get("https://github.com/");
 
@@ -46,6 +55,11 @@ public class GitHubSearchTest {
 
         Assertions.assertEquals(expectedItems, actualItems);
 
+
+    }
+
+    @AfterAll
+    public static void tearDownDriver(){
         driver.quit();
     }
 }
