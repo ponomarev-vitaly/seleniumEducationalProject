@@ -1,5 +1,5 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -9,6 +9,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SeleniumRunner {
 
@@ -43,7 +45,7 @@ public class SeleniumRunner {
         System.out.println("=============================>");
         System.out.println(expectedItems);
 
-        Assert.assertEquals(expectedItems, actualItems);
+        Assertions.assertEquals(expectedItems, actualItems);
 
         driver.quit();
     }
