@@ -9,6 +9,10 @@ repositories {
     mavenCentral()
 }
 
+test {
+    useJUnitPlatform()
+}
+
 dependencies {
     implementation(
             'io.github.bonigarcia:webdrivermanager:3.8.1',
