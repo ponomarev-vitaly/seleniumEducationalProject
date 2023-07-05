@@ -14,7 +14,8 @@ dependencies {
             'io.github.bonigarcia:webdrivermanager:3.8.1',
             'org.seleniumhq.selenium:selenium-java:3.141.59',
             'org.slf4j:slf4j-simple:2.0.7',
-            'junit:junit:4.13.1'
+            // 'junit:junit:4.13.1'
+            'org.junit.jupiter:junit-jupiter:5.7.0'
     )
 }
 
