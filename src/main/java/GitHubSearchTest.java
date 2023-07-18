@@ -23,11 +23,11 @@ public class GitHubSearchTest {
     public static void setUpDriver(){
         WebDriverManager.chromedriver().setup();
 
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
+//        ChromeOptions options = new ChromeOptions();
+//        options.addArguments("--no-sandbox");
+//        options.addArguments("--disable-dev-shm-usage");
 
-        driver = new ChromeDriver(options);
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
@@ -81,9 +81,9 @@ public class GitHubSearchTest {
 
 //        Assertions.assertEquals(expectedItems, actualItems);
     }
-    @AfterAll
-    public static void tearDownDriver(){
-        // System.out.println(LocalDateTime.now());
-        driver.quit();
-    }
+//    @AfterAll
+//    public static void tearDownDriver(){
+//        // System.out.println(LocalDateTime.now());
+//        driver.quit();
+//    }
 }

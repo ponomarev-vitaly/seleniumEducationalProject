@@ -11,7 +11,7 @@ import pages.WebPage;
 
 public class HomePage extends WebPage {
 
-    @FindBy(css = "[name='q']")
+    @FindBy(css = "#query-builder-test")
     private WebElement searchInput;
 
     public HomePage(WebDriver driver) {
