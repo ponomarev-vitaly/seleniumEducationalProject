@@ -10,8 +10,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 public class SeleniumRunner {
 
     public static void main(String[] args) {
@@ -28,9 +26,9 @@ public class SeleniumRunner {
 
         WebElement searchInput = driver.findElement(By.cssSelector("[name='q']"));
 
-        String searchPhrase = "selenium";
+        String searchPhrase1 = "selenium";
 
-        searchInput.sendKeys(searchPhrase);
+        searchInput.sendKeys(searchPhrase1);
         searchInput.sendKeys(Keys.ENTER);
 
         List<String> actualItems = driver.findElements(By.cssSelector(".repo-list-item"))
@@ -38,7 +36,7 @@ public class SeleniumRunner {
                 .map(element -> element.getText().toLowerCase())
                 .collect(Collectors.toList());
         List<String> expectedItems = actualItems.stream()
-                .filter(item -> item.contains(searchPhrase))
+                .filter(item -> item.contains(searchPhrase1))
                 .collect(Collectors.toList());
 
         System.out.println(actualItems); // Print out actualItems and expectedItems into the console.

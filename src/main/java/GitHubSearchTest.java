@@ -10,7 +10,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.impl.HomePage;
 import pages.impl.SearchResultsPage;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -84,7 +83,7 @@ public class GitHubSearchTest {
     }
     @AfterAll
     public static void tearDownDriver(){
-        System.out.println(LocalDateTime.now());
+        // System.out.println(LocalDateTime.now());
         driver.quit();
     }
 }
