@@ -23,18 +23,18 @@ public class GitHubSearchTest {
     public static void setUpDriver(){
         WebDriverManager.chromedriver().setup();
 
-//        ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--no-sandbox");
-//        options.addArguments("--disable-dev-shm-usage");
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
 
-        driver = new ChromeDriver();
+        driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 
     @BeforeAll
     public static void setUpWait(){
-        wait = new WebDriverWait(driver, 15);
+        new WebDriverWait(driver, 15);
     }
 
     private static void switchOffImplicitWait(){
@@ -47,7 +47,9 @@ public class GitHubSearchTest {
         HomePage homePage = new HomePage(driver);
         SearchResultsPage searchResultsPage = new SearchResultsPage(driver);
 
-        homePage.performSearch(searchPhrase);
+//        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(By.cssSelector("#query-builder-test"))).click();
+
+        homePage.performSearch(searchPhrase, driver);
 
         List<String> actualItems = searchResultsPage.searchResultsItemsText();
         List<String> expectedItems = searchResultsPage.searchResultsItemsWithText(searchPhrase);

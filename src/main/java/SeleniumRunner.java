@@ -24,7 +24,7 @@ public class SeleniumRunner {
 
         driver.get("https://github.com/");
 
-        WebElement searchInput = driver.findElement(By.cssSelector("[name='q']"));
+        WebElement searchInput = driver.findElement(By.xpath("//input[@id='query-builder-test']"));
 
         String searchPhrase1 = "selenium";
 

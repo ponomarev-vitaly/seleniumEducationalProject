@@ -12,10 +12,9 @@ public class SearchResultsPage extends WebPage {
     @FindBy(css = ".repo-list-item")
     private List<WebElement> searchResultsItems;
 
-    public SearchResultsPage (WebDriver driver){
+    public SearchResultsPage(WebDriver driver) {
         super(driver);
     }
-
     public List<String> searchResultsItemsText(){
         return searchResultsItems
                 .stream()
