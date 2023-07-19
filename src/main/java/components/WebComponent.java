@@ -14,4 +14,8 @@ public class WebComponent {
     protected WebElement findElement(By bySelector){
         return rootElement.findElement(bySelector);
     }
+
+    public void sendKeys(CharSequence... keysToSend){
+        rootElement.sendKeys(keysToSend);
+    }
 }

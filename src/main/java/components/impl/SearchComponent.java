@@ -1,11 +1,19 @@
 package components.impl;
 
 import components.WebComponent;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+
+import java.security.Key;
 
 public class SearchComponent extends WebComponent {
 
     protected SearchComponent(WebElement rootElement) {
         super(rootElement);
+    }
+
+    public void performSearch(String searchPhrase){
+        sendKeys(searchPhrase);
+        sendKeys(Keys.ENTER);
     }
 }
