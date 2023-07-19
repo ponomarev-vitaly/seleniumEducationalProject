@@ -3,9 +3,12 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.impl.HomePage;
 import pages.impl.SearchResultsPage;
@@ -18,6 +21,8 @@ public class GitHubSearchTest {
     private static final String searchPhrase = "selenium";
     private static WebDriver driver;
     private static WebDriverWait wait;
+
+    private static WebElement searchInput;
 
     @BeforeAll
     public static void setUpDriver(){
@@ -48,6 +53,14 @@ public class GitHubSearchTest {
         SearchResultsPage searchResultsPage = new SearchResultsPage(driver);
 
 //        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(By.cssSelector("#query-builder-test"))).click();
+
+//        Actions builder = new Actions(driver);
+//        WebElement searchInput = driver.findElement(By.cssSelector("#query-builder-test"));
+//        builder.moveToElement(searchInput);
+//        builder.clickAndHold(searchInput);
+
+        driver.findElement(By.xpath("//span[@data-target='qbsearch-input.inputButtonText']")).click();
+        driver.findElement(By.id("query-builder-test")).click();
 
         homePage.performSearch(searchPhrase);
 
