@@ -18,4 +18,8 @@ public class WebComponent {
     public void sendKeys(CharSequence... keysToSend){
         rootElement.sendKeys(keysToSend);
     }
+
+    public String getText(){
+        return rootElement.getText();
+    }
 }

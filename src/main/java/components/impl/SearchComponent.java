@@ -8,7 +8,7 @@ import java.security.Key;
 
 public class SearchComponent extends WebComponent {
 
-    protected SearchComponent(WebElement rootElement) {
+    public SearchComponent(WebElement rootElement) {
         super(rootElement);
     }
 

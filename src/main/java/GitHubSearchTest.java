@@ -62,7 +62,9 @@ public class GitHubSearchTest {
         driver.findElement(By.xpath("//span[@data-target='qbsearch-input.inputButtonText']")).click();
         driver.findElement(By.id("query-builder-test")).click();
 
-        homePage.performSearch(searchPhrase);
+        homePage.searchComponent().performSearch(searchPhrase);
+
+//        homePage.performSearch(searchPhrase);
 
         List<String> actualItems = searchResultsPage.searchResultsItemsText();
         List<String> expectedItems = searchResultsPage.searchResultsItemsWithText(searchPhrase);
