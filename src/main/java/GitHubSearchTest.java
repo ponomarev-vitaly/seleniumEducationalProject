@@ -49,7 +49,7 @@ public class GitHubSearchTest {
 
 //        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(By.cssSelector("#query-builder-test"))).click();
 
-        homePage.performSearch(searchPhrase, driver);
+        homePage.performSearch(searchPhrase);
 
         List<String> actualItems = searchResultsPage.searchResultsItemsText();
         List<String> expectedItems = searchResultsPage.searchResultsItemsWithText(searchPhrase);
@@ -83,9 +83,9 @@ public class GitHubSearchTest {
 
 //        Assertions.assertEquals(expectedItems, actualItems);
     }
-//    @AfterAll
-//    public static void tearDownDriver(){
-//        // System.out.println(LocalDateTime.now());
-//        driver.quit();
-//    }
+    @AfterAll
+    public static void tearDownDriver(){
+        // System.out.println(LocalDateTime.now());
+        driver.quit();
+    }
 }

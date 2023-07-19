@@ -10,17 +10,25 @@ import pages.WebPage;
 
 public class HomePage extends WebPage {
 
-    @FindBy(xpath = "//input[@id='query-builder-test']")
+
+
+//    @FindBy(xpath = "(//input[@id='query-builder-test'])[1]")
+//    @FindBy(id = "query-builder-test")
+    @FindBy(css = "#query-builder-test")
     private WebElement searchInput;
 
     public HomePage(WebDriver driver) {
         super(driver);
     }
 
-    public void performSearch(String searchPhrase, WebDriver driver) {
-        WebElement searchInput = driver.findElement(By.xpath("//input[@id='query-builder-test']"));
-        Actions builder = new Actions(driver);
-        builder.moveToElement(searchInput).doubleClick(searchInput);
+    public void performSearch(String searchPhrase) {
+//        WebElement searchInput = driver.findElement(By.xpath("(//input[@id='query-builder-test'])[1]"));
+//        WebElement searchInput = driver.findElement(By.id("query-builder-test"));
+//        searchInput = driver.findElement(new By.ByClassName("FormControl-input QueryBuilder-Input FormControl-medium"));
+
+//        Actions builder = new Actions(driver);
+//        builder.moveToElement(searchInput).doubleClick(searchInput).perform();
+
         searchInput.sendKeys(searchPhrase);
         searchInput.sendKeys(Keys.ENTER);
     }
