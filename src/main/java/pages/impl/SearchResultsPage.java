@@ -2,6 +2,7 @@ package pages.impl;
 
 import components.WebComponent;
 import components.impl.SearchResultItemComponent;
+import entities.SearchResultItem;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,9 +23,9 @@ public class SearchResultsPage extends WebPage {
         super(driver);
     }
 
-    public List<String> searchResultsItemsText(){
+    public List<SearchResultItem> searchResultsItems(){
         return searchResultItems().stream()
-                .map(WebComponent::getText)
+                .map(SearchResultItemComponent::convertToSearchResultItem)
                 .collect(Collectors.toList());
     }
 
@@ -35,11 +36,10 @@ public class SearchResultsPage extends WebPage {
 //                .collect(Collectors.toList());
 //    }
 
-    public List<String> searchResultsItemsWithText(String searchPhrase) {
-        return searchResultItems()
+    public List<SearchResultItem> searchResultsItemsWithText(String searchPhrase) {
+        return searchResultsItems()
                 .stream()
-                .filter(item -> item.containsSearchPhrase(searchPhrase))
-                .map(WebComponent::getText)
+                .filter(item -> item.getTitle().contains(searchPhrase) || item.getDescription().contains(searchPhrase))
                 .collect(Collectors.toList());
     }
 
